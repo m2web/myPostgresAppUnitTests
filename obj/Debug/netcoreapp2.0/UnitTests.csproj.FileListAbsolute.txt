@@ -12,3 +12,5 @@
 /home/mark/Code/dotnetcore/UnitTests/obj/Debug/netcoreapp2.0/UnitTests.AssemblyInfo.cs
 /home/mark/Code/dotnetcore/UnitTests/obj/Debug/netcoreapp2.0/UnitTests.dll
 /home/mark/Code/dotnetcore/UnitTests/obj/Debug/netcoreapp2.0/UnitTests.pdb
+/home/mark/Code/dotnetcore/UnitTests/bin/Debug/netcoreapp2.0/myApp.dll
+/home/mark/Code/dotnetcore/UnitTests/bin/Debug/netcoreapp2.0/myApp.pdb
