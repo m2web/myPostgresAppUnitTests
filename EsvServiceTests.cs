@@ -10,16 +10,16 @@ namespace UnitTests
         [Test]
         public void GetDailyVerseAsync_Should_not_Be_Empty(){
             System.Diagnostics.Debug.WriteLine("Starting GetDailyVerseAsync_Should_not_Be_Empty");
-            var esvService = new EsvService();
-            var output = esvService.GetDailyVerseAsync().Result;
+            var sut = new EsvService();//EsvService is the System Under Test (sut)
+            var output = sut.GetDailyVerseAsync().Result;
             Assert.IsNotEmpty(output);
         }
 
          [Test]
         public void GetTodaysPsalmAsync_Should_not_Be_Empty(){
             System.Diagnostics.Debug.WriteLine("Starting GetDailyVerseAsync_Should_not_Be_Empty");
-            var esvService = new EsvService();
-            var output = esvService.GetTodaysPsalmAsync().Result;
+            var sut = new EsvService();
+            var output = sut.GetTodaysPsalmAsync().Result;
             Assert.IsNotEmpty(output);
         }
     }
