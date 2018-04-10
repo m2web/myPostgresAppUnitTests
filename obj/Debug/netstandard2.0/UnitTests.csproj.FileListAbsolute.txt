@@ -1,8 +1,0 @@
-/home/mark/Code/dotnetcore/UnitTests/bin/Debug/netstandard2.0/UnitTests.deps.json
-/home/mark/Code/dotnetcore/UnitTests/bin/Debug/netstandard2.0/UnitTests.dll
-/home/mark/Code/dotnetcore/UnitTests/bin/Debug/netstandard2.0/UnitTests.pdb
-/home/mark/Code/dotnetcore/UnitTests/obj/Debug/netstandard2.0/UnitTests.csproj.CoreCompileInputs.cache
-/home/mark/Code/dotnetcore/UnitTests/obj/Debug/netstandard2.0/UnitTests.AssemblyInfoInputs.cache
-/home/mark/Code/dotnetcore/UnitTests/obj/Debug/netstandard2.0/UnitTests.AssemblyInfo.cs
-/home/mark/Code/dotnetcore/UnitTests/obj/Debug/netstandard2.0/UnitTests.dll
-/home/mark/Code/dotnetcore/UnitTests/obj/Debug/netstandard2.0/UnitTests.pdb
