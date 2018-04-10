@@ -9,23 +9,34 @@ namespace UnitTests
     public class EsvServiceTests {
         
         [Test]
-        public void GetDailyVerseAsync_Should_not_Be_Empty(){
-            System.Diagnostics.Debug.WriteLine("Starting GetDailyVerseAsync_Should_not_Be_Empty");
-            var returnedOutput = "In the beginning was the Word....";
+        public void GetDailyVerseAsync_Should_Be_Equal_To_Input(){
+            System.Diagnostics.Debug.WriteLine("Starting GetDailyVerseAsync_Should_Be_Equal_To_Input");
+            var expectedOutout = "In the beginning was the Word....";
             var sut = new Mock<IEsvService>();
-            sut.Setup(x => x.GetDailyVerseAsync()).ReturnsAsync(returnedOutput);
+            sut.Setup(x => x.GetDailyVerseAsync()).ReturnsAsync(expectedOutout);
             var output = sut.Object.GetDailyVerseAsync().Result;
-            Assert.AreEqual(returnedOutput, output);
+            Assert.AreEqual(expectedOutout, output);
         }
 
-         [Test]
-        public void GetTodaysPsalmAsync_Should_not_Be_Empty(){
-            System.Diagnostics.Debug.WriteLine("Starting GetDailyVerseAsync_Should_not_Be_Empty");
-            var returnedOutput = "The Lord is my Shepard....";
+        [Test]
+        public void GetTodaysPsalmAsync_Should_Be_Equal_To_Input(){
+            System.Diagnostics.Debug.WriteLine("Starting GetDailyVerseAsync_Should_Be_Equal_To_Input");
+            var expectedOutout = "The Lord is my Shepard....";
             var sut = new Mock<IEsvService>();
-            sut.Setup(x => x.GetTodaysPsalmAsync()).ReturnsAsync(returnedOutput);
+            sut.Setup(x => x.GetTodaysPsalmAsync()).ReturnsAsync(expectedOutout);
             var output = sut.Object.GetTodaysPsalmAsync().Result;
-            Assert.AreEqual(returnedOutput, output);
+            Assert.AreEqual(expectedOutout, output);
+        }
+
+        [Test]
+        public void GetVerseAsync_Should_Be_Equal_To_Input(){
+            System.Diagnostics.Debug.WriteLine("GetVerseAsync_Should_Be_Equal_To_Input");
+            var expectedOutout = "In the beginning was the Word....";
+            var inputParameter = "John 1:1";
+            var sut = new Mock<IEsvService>();
+            sut.Setup(x => x.GetVerseAsync(inputParameter)).ReturnsAsync(expectedOutout);
+            var output = sut.Object.GetVerseAsync(inputParameter).Result;
+            Assert.AreEqual(expectedOutout, output);
         }
     }
 }
