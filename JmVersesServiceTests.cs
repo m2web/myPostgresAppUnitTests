@@ -5,7 +5,12 @@ using Moq;
 
 namespace UnitTests
 {
-    [TestFixture]
+    //run at the command prompt with the following command:
+    //dotnet test --filter TestCategory=Unit
+    //or decorate the Integration Tests with 
+    //[Ignore("Ignoring these tests")]
+    [TestFixture, Description("Unit Tests")]
+    [Category("Unit")]
     public class JmVersesServiceTests{
 
         [Test]

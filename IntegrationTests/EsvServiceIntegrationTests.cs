@@ -8,6 +8,7 @@ namespace UnitTests
     //dotnet test --filter TestCategory=Integration
     [TestFixture, Description("Integration Tests")]
     [Category("Integration")]
+    //[Ignore("Ignoring these tests")]
     public class EsvServiceIntegrationTests {
         
         [Test]
