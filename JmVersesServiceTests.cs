@@ -35,7 +35,8 @@ namespace UnitTests
                     Year = It.IsAny<string>(),
                     Month = It.IsAny<int>(),
                     Startdate = It.IsAny<DateTime>(),
-                    Enddate = It.IsAny<DateTime>()}
+                    Enddate = It.IsAny<DateTime>()
+                }
             };
         }
 
