@@ -10,6 +10,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Principal;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 
 namespace UnitTests
 {
@@ -93,26 +94,39 @@ namespace UnitTests
             //setup JMVerse Service xctor input parameter
             var jmversesMock = new Mock<IJmVersesService>();
             jmversesMock.Setup(x => x.GetYearsVerses(true)).Returns(jmVerseList);
-
+            //setup PrayerRequestService Service xctor input parameter
             var prayerRequestServiceMock = new Mock<IPrayerRequestService>();
             prayerRequestServiceMock.Setup(x => x.GetTodaysPrayerRequests(It.IsAny<string>())).Returns(prayerRequests);
-
+            //setup IOptions<AppSettings> xctor input parameter
             var appSettingsMock = new Mock<IOptions<AppSettings>>();
             appSettingsMock.Setup(x => x.Value).Returns(appSettings);
-
+            //setup UserManager<ApplicationUser> xctor parameter
             var userManagerMock = GetMockUserManager();
 
             var sut = new TodaysPrayerController(jmversesMock.Object, catechismServiceMock.Object,
                 prayerRequestServiceMock.Object, appSettingsMock.Object, userManagerMock.Object);
+
+            //set the HttpContext state
+            sut.ControllerContext = new ControllerContext{
+                 HttpContext = new DefaultHttpContext
+                {
+                    User = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
+                    {
+                        new Claim(ClaimTypes.Name, "username")
+                    }, "someAuthTypeName"))
+                }
+            };
             
-            //TODO: get sut.Index() call working
-            // var indexResult = sut.Index();
+            //set the controller methods
+            var indexResult = sut.Index();
             var vovPrayerLinkResult = sut.GetVovPrayerLink();
             
+            //asserts
             Assert.IsNotNull(vovPrayerLinkResult);
-            //TODO: get call working
-            // Assert.IsNotNull(indexResult);
-            
+            Assert.IsNotNull(indexResult);
+
+            Assert.IsInstanceOf<ActionResult>(vovPrayerLinkResult);
+            Assert.IsInstanceOf<System.Threading.Tasks.Task<ActionResult>>(indexResult);
         }
 
         private Mock<UserManager<ApplicationUser>> GetMockUserManager()
@@ -120,28 +134,8 @@ namespace UnitTests
             var userStoreMock = new Mock<IUserStore<ApplicationUser>>();
             var userMock = new Mock<UserManager<ApplicationUser>>(
                 userStoreMock.Object, null, null, null, null, null, null, null, null);
-            
-            var principal = new CustomPrincipal();
-            principal.UserId = "2038786";
-            principal.FirstName = "Test";
-            principal.LastName = "User";
-            principal.IsStoreUser = true;
-            
-            var newUser = new ApplicationUser();
-            newUser.Id = "2038786";
-            newUser.UserName = "Test";
-            newUser.Email = "me@here.com";
-            userMock.Setup(x => x.GetUserAsync(principal)).ReturnsAsync(newUser);
 
             return userMock;
         }
-    }
-
-    public class CustomPrincipal : ClaimsPrincipal
-    {
-        public string UserId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public bool IsStoreUser { get; set; }
     }
 }
